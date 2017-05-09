@@ -20,7 +20,7 @@ public:
     void initBicudoTab();
 
 private slots:
-    void handleInsertNew();
+    void handleCreateOwner();
 
 private:
     Ui::MainWindow *ui;

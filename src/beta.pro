@@ -17,13 +17,13 @@ LIBS += -L/usr/local/lib \
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    insertnewdialog.cpp \
-    sqlite.cpp
+    sqlite.cpp \
+    createowner.cpp
 
 HEADERS  += mainwindow.h \
     commons.h \
-    insertnewdialog.h \
-    sqlite.h
+    sqlite.h \
+    createowner.h
 
 FORMS    += mainwindow.ui \
-    insertnewdialog.ui
+    createowner.ui

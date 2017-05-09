@@ -10,15 +10,13 @@
 #include <ctime>
 #include "commons.h"
 
-using namespace std;
-
 class Sqlite
 {
 protected:
     sqlite3 *db;
 
-    string path_database;
-    string password;
+    std::string path_database;
+    std::string password;
 
     int status_db;
     char *error_query;
@@ -35,6 +33,8 @@ public:
 
     //! This metohd close the connection with the database
     void close();
+
+    void addOwner(Owner owner);
 };
 
 #endif // SQLITE_H

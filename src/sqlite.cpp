@@ -34,3 +34,7 @@ int Sqlite::callback(void *NotUsed, int argc, char **argv, char **azColName){
     printf("\n");
     return 0;
 }
+
+void Sqlite::addOwner(Owner owner){
+
+}
