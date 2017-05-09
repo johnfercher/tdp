@@ -11,14 +11,19 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = beta
 TEMPLATE = app
 
+INCLUDEPATH += /usr/local/include
+LIBS += -L/usr/local/lib \
+    -l sqlite3
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    insertnewdialog.cpp
+    insertnewdialog.cpp \
+    sqlite.cpp
 
 HEADERS  += mainwindow.h \
     commons.h \
-    insertnewdialog.h
+    insertnewdialog.h \
+    sqlite.h
 
 FORMS    += mainwindow.ui \
     insertnewdialog.ui

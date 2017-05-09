@@ -6,9 +6,19 @@ InsertNewDialog::InsertNewDialog(QWidget *parent) :
     ui(new Ui::InsertNewDialog)
 {
     ui->setupUi(this);
+
+    init();
 }
 
 InsertNewDialog::~InsertNewDialog()
 {
     delete ui;
+}
+
+void InsertNewDialog::init(){
+    connect(ui->inserirBtn, SIGNAL (released()), this, SLOT (handleInsert()));
+}
+
+void InsertNewDialog::handleInsert(){
+    this->close();
 }

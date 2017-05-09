@@ -15,6 +15,11 @@ public:
     explicit InsertNewDialog(QWidget *parent = 0);
     ~InsertNewDialog();
 
+    void init();
+
+private slots:
+    void handleInsert();
+
 private:
     Ui::InsertNewDialog *ui;
 };
