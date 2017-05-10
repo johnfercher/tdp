@@ -19,9 +19,15 @@ void CreateOwner::init(){
 }
 
 void CreateOwner::handleAdd(){
-    owner.name = ui->nameLine->text().toUtf8().constData();
+    std::string name = ui->nameLine->text().toUtf8().constData();
+    std::string ctf = ui->ctfLine->text().toUtf8().constData();
+    std::string cpf = ui->cpfLine->text().toUtf8().constData();
 
-    sql.addOwner(owner);
-
-    this->close();
+    if(name != "" && ctf != "" && cpf != ""){
+        owner.name = name;
+        owner.cpf = cpf;
+        owner.ctf = ctf;
+        sql.addOwner(owner);
+        this->close();
+    }
 }

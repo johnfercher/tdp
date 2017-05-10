@@ -42,7 +42,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="ownerTab">
      <attribute name="title">
@@ -95,14 +95,14 @@
        </rect>
       </property>
       <property name="text">
-       <string>Adicionar Novo</string>
+       <string>Novo Proprietário</string>
       </property>
      </widget>
      <widget class="QPushButton" name="deleteOwnerBtn">
       <property name="geometry">
        <rect>
         <x>1060</x>
-        <y>530</y>
+        <y>590</y>
         <width>191</width>
         <height>51</height>
        </rect>
@@ -115,13 +115,13 @@
       <property name="geometry">
        <rect>
         <x>1060</x>
-        <y>590</y>
+        <y>530</y>
         <width>191</width>
         <height>51</height>
        </rect>
       </property>
       <property name="text">
-       <string>Alterar Dados</string>
+       <string>Alterar Dados de Prop.</string>
       </property>
      </widget>
      <widget class="QPushButton" name="readOwnerBtn">
@@ -137,7 +137,7 @@
        <string>Buscar por Nome</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="searchNameLine">
       <property name="geometry">
        <rect>
         <x>1060</x>
@@ -213,10 +213,142 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="curioTab">
+    <widget class="QWidget" name="birdTab">
      <attribute name="title">
       <string>Pássaros</string>
      </attribute>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>1241</width>
+        <height>641</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Bicudo Fibra</string>
+       </attribute>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>1221</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Bicudo Fibra</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="bicudoWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>1221</width>
+          <height>471</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="refreshBicudoBtn">
+        <property name="geometry">
+         <rect>
+          <x>1030</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Atualizar</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="createBirdBtn">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Novo Pássaro</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="deleteBirdBtn">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Remover Pássaro</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="updateBirdBtn">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Alterar Dados de Pássaro</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Curió Fibra</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Chanchão Fibra</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Coleiro</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Trinca Ferro</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_6">
+       <attribute name="title">
+        <string>Curió ?</string>
+       </attribute>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="chanchaoTab">
      <attribute name="title">

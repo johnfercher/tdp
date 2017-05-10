@@ -20,12 +20,18 @@ LIBS += -L/usr/local/lib \
 SOURCES += main.cpp\
         mainwindow.cpp \
     sqlite.cpp \
-    createowner.cpp
+    createowner.cpp \
+    updateowner.cpp \
+    createbird.cpp
 
 HEADERS  += mainwindow.h \
     commons.h \
     sqlite.h \
-    createowner.h
+    createowner.h \
+    updateowner.h \
+    createbird.h
 
 FORMS    += mainwindow.ui \
-    createowner.ui
+    createowner.ui \
+    updateowner.ui \
+    createbird.ui

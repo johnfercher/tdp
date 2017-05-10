@@ -2,12 +2,12 @@
 #define SQLITE_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "iostream"
 #include "sstream"
 
 #include <sqlite3.h>
-#include <ctime>
 #include "commons.h"
 
 class Sqlite
@@ -24,6 +24,8 @@ protected:
 
     //! Print the data result from query in database
     static int callback(void *NotUsed, int argc, char **argv, char **azColName);
+    static int callback_list_owners(void *NotUsed, int argc, char **argv, char **azColName);
+    static int callback_list_birds(void *NotUsed, int argc, char **argv, char **azColName);
 
 public:
     Sqlite();
@@ -34,7 +36,20 @@ public:
     //! This metohd close the connection with the database
     void close();
 
+
     void addOwner(Owner owner);
+
+    void updateOwner(Owner owner);
+
+    void deleteOwner(Owner owner);
+
+    std::vector<Owner> listOwners();
+
+
+    void addBird(Bird, Owner);
+
+    std::vector<Bird> listBirds(int);
+
 };
 
 #endif // SQLITE_H
