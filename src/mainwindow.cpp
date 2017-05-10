@@ -70,11 +70,11 @@ void MainWindow::initBicudoTab(){
     ui->bicudoWidget->setEditTriggers(QAbstractItemView::AllEditTriggers);
 
     ui->bicudoWidget->setColumnWidth(0, 100);
-    ui->bicudoWidget->setColumnWidth(1, 350);
-    ui->bicudoWidget->setColumnWidth(2, 300);
-    ui->bicudoWidget->setColumnWidth(3, 450);
+    ui->bicudoWidget->setColumnWidth(1, 380);
+    ui->bicudoWidget->setColumnWidth(2, 310);
+    ui->bicudoWidget->setColumnWidth(3, 380);
 
-    //updateBicudoTab();
+    updateBicudoTab();
 }
 
 void MainWindow::handleCreateOwner(){
@@ -117,7 +117,7 @@ void MainWindow::handleCellClicked(int row,int col)
 void MainWindow::handleCreateBird(){
     CreateBird dialog(this);
 
-    dialog.allocOwners(&owners);
+    dialog.setOwners(owners);
     dialog.setRace(BICUDO_F);
     dialog.setFixedSize(450, 220);
 
@@ -137,7 +137,14 @@ void MainWindow::updateOwnerTab(){
         QTableWidgetItem *item2 = new QTableWidgetItem(QString::fromStdString(owners.at(i).name));
         QTableWidgetItem *item3 = new QTableWidgetItem(QString::fromStdString(owners.at(i).cpf));
         QTableWidgetItem *item4 = new QTableWidgetItem(QString::fromStdString(owners.at(i).ctf));
-        QTableWidgetItem *item5 = new QTableWidgetItem(QString::fromStdString(" ; ; ; ;"));
+
+        std::stringstream bicudos;
+
+        for(unsigned int j = 0 ; j < owners.at(i).bicudos.size() ; j++){
+            bicudos << owners.at(i).bicudos.at(j).id << " ; ";
+        }
+
+        QTableWidgetItem *item5 = new QTableWidgetItem(QString::fromStdString(bicudos.str()));
 
         item1->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
         item2->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
@@ -160,5 +167,40 @@ void MainWindow::updateOwnerTab(){
 }
 
 void MainWindow::updateBicudoTab(){
-    bicudos = sql.listBirds(BICUDO_F);
+    ui->bicudoWidget->setRowCount(0);
+    bicudos = sql.listBicudos();
+
+    for(unsigned int i = 0 ; i < bicudos.size() ; i++){
+        ui->bicudoWidget->insertRow( ui->bicudoWidget->rowCount() );
+
+        QTableWidgetItem *item1 = new QTableWidgetItem(QString::number(bicudos.at(i).id));
+        QTableWidgetItem *item2 = new QTableWidgetItem(QString::fromStdString(bicudos.at(i).name));
+        QTableWidgetItem *item3 = new QTableWidgetItem(QString::fromStdString(bicudos.at(i).washer));
+
+        std::string str = "";
+        for(unsigned int j = 0 ; j < owners.size() ; j++){
+            for(unsigned int k = 0 ; k < owners.at(j).bicudos.size() ; k++){
+                if(owners.at(j).bicudos.at(k).id == bicudos.at(i).id){
+                    str = owners.at(j).name;
+                }
+            }
+        }
+
+        QTableWidgetItem *item4 = new QTableWidgetItem(QString::fromStdString(str));
+
+        item1->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        item2->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        item3->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        item4->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+
+        item1->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        item2->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        item3->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        item4->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+
+        ui->bicudoWidget->setItem( ui->bicudoWidget->rowCount() -1, 0, item1 );
+        ui->bicudoWidget->setItem( ui->bicudoWidget->rowCount() -1, 1, item2 );
+        ui->bicudoWidget->setItem( ui->bicudoWidget->rowCount() -1, 2, item3 );
+        ui->bicudoWidget->setItem( ui->bicudoWidget->rowCount() -1, 3, item4 );
+    }
 }

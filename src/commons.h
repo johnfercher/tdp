@@ -41,10 +41,14 @@ struct Bird{
 struct Owner{
     int id;
     std::string name;
-    std::vector<Bird*> birds;
+    std::vector<Bird> bicudos;
+    std::vector<Bird> curios;
+    std::vector<Bird> trincas;
+    std::vector<Bird> chancaos;
+    std::vector<Bird> coleiros;
+    std::vector<Bird> curios2;
     std::string cpf;
     std::string ctf;
-
 
     Owner(){
         id = -1;
@@ -65,27 +69,19 @@ struct Owner{
         this->cpf = cpf;
     };
 
-    Owner(int id, std::string name, std::string cpf, std::string ctf, std::vector<Bird*> birds){
-        this->id = id;
-        this->name = name;
-        this->ctf = ctf;
-        this->cpf = cpf;
-        this->birds = birds;
-    };
-
     Owner(Owner *o){
         id = o->id;
         name = o->name;
         ctf = o->ctf;
         cpf = o->cpf;
-        birds = o->birds;
+        bicudos = o->bicudos;
     };
 
     void debug(){
         std::cout << "Id: " << id << ", Name: " << name << ", CTF: " << ctf << ", CPF: " << cpf << std::endl;
         std::cout << "Passaros: " << std::endl;
-        for(unsigned int i = 0 ; i < birds.size() ; i++){
-            birds.at(i)->debug();
+        for(unsigned int i = 0 ; i < bicudos.size() ; i++){
+            bicudos.at(i).debug();
         }
     }
 };

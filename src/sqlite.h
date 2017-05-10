@@ -25,7 +25,7 @@ protected:
     //! Print the data result from query in database
     static int callback(void *NotUsed, int argc, char **argv, char **azColName);
     static int callback_list_owners(void *NotUsed, int argc, char **argv, char **azColName);
-    static int callback_list_birds(void *NotUsed, int argc, char **argv, char **azColName);
+    static int callback_list_bicudos(void *NotUsed, int argc, char **argv, char **azColName);
 
 public:
     Sqlite();
@@ -48,7 +48,7 @@ public:
 
     void addBird(Bird, Owner);
 
-    std::vector<Bird> listBirds(int);
+    std::vector<Bird> listBicudos(int id_owner = 0);
 
 };
 

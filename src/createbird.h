@@ -19,7 +19,7 @@ public:
     ~CreateBird();
 
     void setRace(int);
-    void allocOwners(std::vector<Owner>*);
+    void setOwners(std::vector<Owner>);
 
 private slots:
     void handleAdd();
@@ -29,7 +29,7 @@ private:
     Sqlite sql;
 
     Bird bird;
-    std::vector<Owner> *owners;
+    std::vector<Owner> owners;
 };
 
 #endif // CREATEBIRD_H

@@ -21,7 +21,7 @@ void CreateBird::handleAdd(){
     if(name != "" && washer != ""){
         bird.name = name;
         bird.washer = washer;
-        sql.addBird(bird, owners->at(ui->ownersBox->currentIndex()));
+        sql.addBird(bird, owners.at(ui->ownersBox->currentIndex()));
         this->close();
     }
 }
@@ -54,12 +54,12 @@ void CreateBird::setRace(int race){
     }
 }
 
-void CreateBird::allocOwners(std::vector<Owner> *owners){
+void CreateBird::setOwners(std::vector<Owner> owners){
     this->owners = owners;
     QStringList list;
 
-    for(unsigned int i = 0 ; i < owners->size() ; i++){
-        list << QString::fromStdString(owners->at(i).name);
+    for(unsigned int i = 0 ; i < owners.size() ; i++){
+        list << QString::fromStdString(owners.at(i).name);
     }
 
     ui->ownersBox->addItems(list);
