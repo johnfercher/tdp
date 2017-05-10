@@ -44,14 +44,14 @@ void Sqlite::addOwner(Owner owner){
     query << " VALUES (";
         query << "'" << owner.name << "'";
     query << ");";
-    qDebug() << QDir::currentPath();
-    std::cout << query.str() << std::endl;
+    //qDebug() << QDir::currentPath();
+    //std::cout << query.str() << std::endl;
 
     open();
-        /*status_db = sqlite3_exec(db, query.str().c_str(), callback, 0, &error_query);
+        status_db = sqlite3_exec(db, query.str().c_str(), callback, 0, &error_query);
         if(status_db != SQLITE_OK){
             fprintf(stderr, "SQL error: %s\n", error_query);
             sqlite3_free(error_query);
-        }*/
+        }
     close();
 }
