@@ -48,6 +48,8 @@ public:
 
     void addBird(Bird, Owner);
 
+    void deleteBird(Bird);
+
     std::vector<Bird> listBirds(int race, int id_owner = 0);
 
 };

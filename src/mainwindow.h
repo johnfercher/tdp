@@ -48,24 +48,43 @@ public:
 
     int ownerRowSelected;
 
+    int bicudoRowSelected;
+    int curiofRowSelected;
+    int curiolRowSelected;
+    int chanchaoRowSelected;
+    int coleiroRowSelected;
+    int trincaRowSelected;
+
 private slots:
     void handleCreateOwner();
+    void handleCellOwner(int row,int col);
     void handleRefresnOwner();
-    void handleCellClicked(int row,int col);
     void handleDeleteOwner();
     void handleUpdateOwner();
 
     void handleCreateBicudo();
+    void handleCellBicudo(int row,int col);
+    void handleDeleteBicudo();
 
     void handleCreateCuriof();
+    void handleCellCuriof(int row,int col);
+    void handleDeleteCuriof();
 
     void handleCreateCuriol();
+    void handleCellCuriol(int row,int col);
+    void handleDeleteCuriol();
 
     void handleCreateChanchao();
+    void handleCellChanchao(int row,int col);
+    void handleDeleteChanchao();
 
     void handleCreateColeiro();
+    void handleCellColeiro(int row,int col);
+    void handleDeleteColeiro();
 
     void handleCreateTrinca();
+    void handleCellTrinca(int row,int col);
+    void handleDeleteTrinca();
 
 private:
     Ui::MainWindow *ui;

@@ -164,6 +164,23 @@ void Sqlite::addBird(Bird bird, Owner owner){
     close();
 }
 
+void Sqlite::deleteBird(Bird bird){
+    std::stringstream query;
+
+    query << "DELETE FROM Bird";
+    query << " WHERE id=";
+        query << "'" << bird.id << "'";
+    query << ";";
+
+    open();
+        status_db = sqlite3_exec(db, query.str().c_str(), callback, 0, &error_query);
+        if(status_db != SQLITE_OK){
+            fprintf(stderr, "SQL error: %s\n", error_query);
+            sqlite3_free(error_query);
+        }
+    close();
+}
+
 std::vector<Bird> Sqlite::listBirds(int race, int id_owner){
     std::stringstream query;
     _birds.clear();

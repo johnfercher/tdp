@@ -42,6 +42,12 @@ MainWindow::MainWindow(QWidget *parent) :
     init();
 
     ownerRowSelected = -1;
+    bicudoRowSelected = -1;
+    curiofRowSelected = -1;
+    curiolRowSelected = -1;
+    chanchaoRowSelected = -1;
+    coleiroRowSelected = -1;
+    trincaRowSelected = -1;
 }
 
 MainWindow::~MainWindow()
@@ -54,17 +60,34 @@ void MainWindow::init(){
     initBirdsTab();
 
     connect(ui->createOwnerBtn, SIGNAL (released()), this, SLOT (handleCreateOwner()));
+    connect(ui->ownerWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellOwner(int,int)));
     connect(ui->refreshOwnerBtn, SIGNAL (released()), this, SLOT (handleRefresnOwner()));
-    connect(ui->ownerWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellClicked(int,int)));
     connect(ui->deleteOwnerBtn, SIGNAL (released()), this, SLOT (handleDeleteOwner()));
     connect(ui->updateOwnerBtn, SIGNAL (released()), this, SLOT (handleUpdateOwner()));
 
     connect(ui->createBicudoBtn, SIGNAL (released()), this, SLOT (handleCreateBicudo()));
+    connect(ui->bicudoWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellBicudo(int,int)));
+    connect(ui->deleteBicudoBtn, SIGNAL (released()), this, SLOT (handleDeleteBicudo()));
+
     connect(ui->createCuriofBtn, SIGNAL (released()), this, SLOT (handleCreateCuriof()));
+    connect(ui->curiofWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellCuriof(int,int)));
+    connect(ui->deleteCuriofBtn, SIGNAL (released()), this, SLOT (handleDeleteCuriof()));
+
     connect(ui->createCuriolBtn, SIGNAL (released()), this, SLOT (handleCreateCuriol()));
+    connect(ui->curiolWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellCuriol(int,int)));
+    connect(ui->deleteCuriolBtn, SIGNAL (released()), this, SLOT (handleDeleteCuriol()));
+
     connect(ui->createChanchaoBtn, SIGNAL (released()), this, SLOT (handleCreateChanchao()));
+    connect(ui->chanchaoWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellChanchao(int,int)));
+    connect(ui->deleteChanchaoBtn, SIGNAL (released()), this, SLOT (handleDeleteChanchao()));
+
     connect(ui->createColeiroBtn, SIGNAL (released()), this, SLOT (handleCreateColeiro()));
+    connect(ui->coleiroWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellColeiro(int,int)));
+    connect(ui->deleteColeiroBtn, SIGNAL (released()), this, SLOT (handleDeleteColeiro()));
+
     connect(ui->createTrincaBtn, SIGNAL (released()), this, SLOT (handleCreateTrinca()));
+    connect(ui->trincaWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellTrinca(int,int)));
+    connect(ui->deleteTrincaBtn, SIGNAL (released()), this, SLOT (handleDeleteTrinca()));
 }
 
 void MainWindow::initOwnerTab(){
@@ -178,7 +201,7 @@ void MainWindow::handleUpdateOwner(){
     }
 }
 
-void MainWindow::handleCellClicked(int row,int col)
+void MainWindow::handleCellOwner(int row,int col)
 {
     ownerRowSelected = row;
 }
@@ -195,6 +218,20 @@ void MainWindow::handleCreateBicudo(){
     updateBicudoTab();
 }
 
+void MainWindow::handleDeleteBicudo(){
+    if(bicudoRowSelected != -1){
+        sql.deleteBird(bicudos.at(bicudoRowSelected));
+        updateBicudoTab();
+        bicudoRowSelected = -1;
+    }
+}
+
+void MainWindow::handleCellBicudo(int row,int col)
+{
+    bicudoRowSelected = row;
+}
+
+
 void MainWindow::handleCreateCuriof(){
     CreateBird dialog(this);
 
@@ -205,6 +242,19 @@ void MainWindow::handleCreateCuriof(){
     dialog.exec();
 
     updateCuriofTab();
+}
+
+void MainWindow::handleDeleteCuriof(){
+    if(curiofRowSelected != -1){
+        sql.deleteBird(curiofs.at(curiofRowSelected));
+        updateCuriofTab();
+        curiofRowSelected = -1;
+    }
+}
+
+void MainWindow::handleCellCuriof(int row,int col)
+{
+    curiofRowSelected = row;
 }
 
 void MainWindow::handleCreateCuriol(){
@@ -219,6 +269,19 @@ void MainWindow::handleCreateCuriol(){
     updateCuriolTab();
 }
 
+void MainWindow::handleDeleteCuriol(){
+    if(curiolRowSelected != -1){
+        sql.deleteBird(curiols.at(curiolRowSelected));
+        updateCuriolTab();
+        curiolRowSelected = -1;
+    }
+}
+
+void MainWindow::handleCellCuriol(int row,int col)
+{
+    curiolRowSelected = row;
+}
+
 void MainWindow::handleCreateChanchao(){
     CreateBird dialog(this);
 
@@ -229,6 +292,19 @@ void MainWindow::handleCreateChanchao(){
     dialog.exec();
 
     updateChanchaoTab();
+}
+
+void MainWindow::handleDeleteChanchao(){
+    if(chanchaoRowSelected != -1){
+        sql.deleteBird(chanchaos.at(chanchaoRowSelected));
+        updateChanchaoTab();
+        chanchaoRowSelected = -1;
+    }
+}
+
+void MainWindow::handleCellChanchao(int row,int col)
+{
+    chanchaoRowSelected = row;
 }
 
 void MainWindow::handleCreateColeiro(){
@@ -243,6 +319,19 @@ void MainWindow::handleCreateColeiro(){
     updateColeiroTab();
 }
 
+void MainWindow::handleDeleteColeiro(){
+    if(coleiroRowSelected != -1){
+        sql.deleteBird(coleiros.at(coleiroRowSelected));
+        updateColeiroTab();
+        coleiroRowSelected = -1;
+    }
+}
+
+void MainWindow::handleCellColeiro(int row,int col)
+{
+    coleiroRowSelected = row;
+}
+
 void MainWindow::handleCreateTrinca(){
     CreateBird dialog(this);
 
@@ -253,6 +342,19 @@ void MainWindow::handleCreateTrinca(){
     dialog.exec();
 
     updateTrincaTab();
+}
+
+void MainWindow::handleDeleteTrinca(){
+    if(trincaRowSelected != -1){
+        sql.deleteBird(trincas.at(trincaRowSelected));
+        updateTrincaTab();
+        trincaRowSelected = -1;
+    }
+}
+
+void MainWindow::handleCellTrinca(int row,int col)
+{
+    trincaRowSelected = row;
 }
 
 void MainWindow::updateOwnerTab(){
