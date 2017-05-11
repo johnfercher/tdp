@@ -59,35 +59,54 @@ void MainWindow::init(){
     initOwnerTab();
     initBirdsTab();
 
+    updateAllTabs();
+
     connect(ui->createOwnerBtn, SIGNAL (released()), this, SLOT (handleCreateOwner()));
     connect(ui->ownerWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellOwner(int,int)));
-    connect(ui->refreshOwnerBtn, SIGNAL (released()), this, SLOT (handleRefresnOwner()));
+    connect(ui->refreshOwnerBtn, SIGNAL (released()), this, SLOT (handleRefreshOwner()));
     connect(ui->deleteOwnerBtn, SIGNAL (released()), this, SLOT (handleDeleteOwner()));
     connect(ui->updateOwnerBtn, SIGNAL (released()), this, SLOT (handleUpdateOwner()));
 
     connect(ui->createBicudoBtn, SIGNAL (released()), this, SLOT (handleCreateBicudo()));
     connect(ui->bicudoWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellBicudo(int,int)));
+    connect(ui->refreshBicudoBtn, SIGNAL (released()), this, SLOT (handleRefreshBicudo()));
     connect(ui->deleteBicudoBtn, SIGNAL (released()), this, SLOT (handleDeleteBicudo()));
+    connect(ui->updateBicudoBtn, SIGNAL (released()), this, SLOT (handleUpdateBicudo()));
 
     connect(ui->createCuriofBtn, SIGNAL (released()), this, SLOT (handleCreateCuriof()));
     connect(ui->curiofWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellCuriof(int,int)));
+    connect(ui->refreshCuriofBtn, SIGNAL (released()), this, SLOT (handleRefreshCuriof()));
     connect(ui->deleteCuriofBtn, SIGNAL (released()), this, SLOT (handleDeleteCuriof()));
 
     connect(ui->createCuriolBtn, SIGNAL (released()), this, SLOT (handleCreateCuriol()));
     connect(ui->curiolWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellCuriol(int,int)));
+    connect(ui->refreshCuriolBtn, SIGNAL (released()), this, SLOT (handleRefreshCuriol()));
     connect(ui->deleteCuriolBtn, SIGNAL (released()), this, SLOT (handleDeleteCuriol()));
 
     connect(ui->createChanchaoBtn, SIGNAL (released()), this, SLOT (handleCreateChanchao()));
     connect(ui->chanchaoWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellChanchao(int,int)));
+    connect(ui->refreshChanchaoBtn, SIGNAL (released()), this, SLOT (handleRefreshChanchao()));
     connect(ui->deleteChanchaoBtn, SIGNAL (released()), this, SLOT (handleDeleteChanchao()));
 
     connect(ui->createColeiroBtn, SIGNAL (released()), this, SLOT (handleCreateColeiro()));
     connect(ui->coleiroWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellColeiro(int,int)));
+    connect(ui->refreshColeiroBtn, SIGNAL (released()), this, SLOT (handleRefreshColeiro()));
     connect(ui->deleteColeiroBtn, SIGNAL (released()), this, SLOT (handleDeleteColeiro()));
 
     connect(ui->createTrincaBtn, SIGNAL (released()), this, SLOT (handleCreateTrinca()));
     connect(ui->trincaWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellTrinca(int,int)));
+    connect(ui->refreshTrincaBtn, SIGNAL (released()), this, SLOT (handleRefreshTrinca()));
     connect(ui->deleteTrincaBtn, SIGNAL (released()), this, SLOT (handleDeleteTrinca()));
+}
+
+void MainWindow::updateAllTabs(){
+    updateOwnerTab();
+    updateBicudoTab();
+    updateCuriofTab();
+    updateCuriolTab();
+    updateChanchaoTab();
+    updateColeiroTab();
+    updateTrincaTab();
 }
 
 void MainWindow::initOwnerTab(){
@@ -104,8 +123,6 @@ void MainWindow::initOwnerTab(){
     ui->ownerWidget->setColumnWidth(2, 120);
     ui->ownerWidget->setColumnWidth(3, 120);
     ui->ownerWidget->setColumnWidth(4, 390);
-
-    updateOwnerTab();
 }
 
 void MainWindow::initBirdsTab(){
@@ -160,13 +177,6 @@ void MainWindow::initBirdsTab(){
     ui->chanchaoWidget->setColumnWidth(3, 380);
     ui->coleiroWidget->setColumnWidth(3, 380);
     ui->trincaWidget->setColumnWidth(3, 380);
-
-    updateBicudoTab();
-    updateCuriofTab();
-    updateCuriolTab();
-    updateChanchaoTab();
-    updateColeiroTab();
-    updateTrincaTab();
 }
 
 void MainWindow::handleCreateOwner(){
@@ -177,7 +187,7 @@ void MainWindow::handleCreateOwner(){
     updateOwnerTab();
 }
 
-void MainWindow::handleRefresnOwner(){
+void MainWindow::handleRefreshOwner(){
     updateOwnerTab();
 }
 
@@ -218,11 +228,30 @@ void MainWindow::handleCreateBicudo(){
     updateBicudoTab();
 }
 
+void MainWindow::handleRefreshBicudo(){
+    updateBicudoTab();
+}
+
 void MainWindow::handleDeleteBicudo(){
     if(bicudoRowSelected != -1){
         sql.deleteBird(bicudos.at(bicudoRowSelected));
         updateBicudoTab();
         bicudoRowSelected = -1;
+    }
+}
+
+void MainWindow::handleUpdateBicudo(){
+    if(bicudoRowSelected != -1){
+        UpdateBird dialog(this);
+        dialog.setFixedSize(450, 260);
+        dialog.setOwners(owners);
+        dialog.setBird(bicudos.at(bicudoRowSelected));
+        dialog.exec();
+
+        //! Deve-se atualizar tudo, pois um passaro pode ter a raça e dono alterados
+        updateAllTabs();
+
+        ownerRowSelected = -1;
     }
 }
 
@@ -241,6 +270,10 @@ void MainWindow::handleCreateCuriof(){
 
     dialog.exec();
 
+    updateCuriofTab();
+}
+
+void MainWindow::handleRefreshCuriof(){
     updateCuriofTab();
 }
 
@@ -269,6 +302,10 @@ void MainWindow::handleCreateCuriol(){
     updateCuriolTab();
 }
 
+void MainWindow::handleRefreshCuriol(){
+    updateCuriolTab();
+}
+
 void MainWindow::handleDeleteCuriol(){
     if(curiolRowSelected != -1){
         sql.deleteBird(curiols.at(curiolRowSelected));
@@ -291,6 +328,10 @@ void MainWindow::handleCreateChanchao(){
 
     dialog.exec();
 
+    updateChanchaoTab();
+}
+
+void MainWindow::handleRefreshChanchao(){
     updateChanchaoTab();
 }
 
@@ -319,6 +360,10 @@ void MainWindow::handleCreateColeiro(){
     updateColeiroTab();
 }
 
+void MainWindow::handleRefreshColeiro(){
+    updateColeiroTab();
+}
+
 void MainWindow::handleDeleteColeiro(){
     if(coleiroRowSelected != -1){
         sql.deleteBird(coleiros.at(coleiroRowSelected));
@@ -341,6 +386,10 @@ void MainWindow::handleCreateTrinca(){
 
     dialog.exec();
 
+    updateTrincaTab();
+}
+
+void MainWindow::handleRefreshTrinca(){
     updateTrincaTab();
 }
 

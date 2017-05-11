@@ -22,16 +22,19 @@ SOURCES += main.cpp\
     sqlite.cpp \
     createowner.cpp \
     updateowner.cpp \
-    createbird.cpp
+    createbird.cpp \
+    updatebird.cpp
 
 HEADERS  += mainwindow.h \
     commons.h \
     sqlite.h \
     createowner.h \
     updateowner.h \
-    createbird.h
+    createbird.h \
+    updatebird.h
 
 FORMS    += mainwindow.ui \
     createowner.ui \
     updateowner.ui \
-    createbird.ui
+    createbird.ui \
+    updatebird.ui

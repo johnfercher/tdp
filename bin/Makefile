@@ -53,20 +53,24 @@ SOURCES       = ../src/main.cpp \
 		../src/sqlite.cpp \
 		../src/createowner.cpp \
 		../src/updateowner.cpp \
-		../src/createbird.cpp moc_mainwindow.cpp \
+		../src/createbird.cpp \
+		../src/updatebird.cpp moc_mainwindow.cpp \
 		moc_createowner.cpp \
 		moc_updateowner.cpp \
-		moc_createbird.cpp
+		moc_createbird.cpp \
+		moc_updatebird.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		sqlite.o \
 		createowner.o \
 		updateowner.o \
 		createbird.o \
+		updatebird.o \
 		moc_mainwindow.o \
 		moc_createowner.o \
 		moc_updateowner.o \
-		moc_createbird.o
+		moc_createbird.o \
+		moc_updatebird.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -140,12 +144,14 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../src/sqlite.h \
 		../src/createowner.h \
 		../src/updateowner.h \
-		../src/createbird.h ../src/main.cpp \
+		../src/createbird.h \
+		../src/updatebird.h ../src/main.cpp \
 		../src/mainwindow.cpp \
 		../src/sqlite.cpp \
 		../src/createowner.cpp \
 		../src/updateowner.cpp \
-		../src/createbird.cpp
+		../src/createbird.cpp \
+		../src/updatebird.cpp
 QMAKE_TARGET  = beta
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = beta
@@ -173,7 +179,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_createowner.h ui_updateowner.h ui_createbird.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_createowner.h ui_updateowner.h ui_createbird.h ui_updatebird.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../src/beta.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -335,9 +341,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../src/mainwindow.h ../src/commons.h ../src/sqlite.h ../src/createowner.h ../src/updateowner.h ../src/createbird.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../src/main.cpp ../src/mainwindow.cpp ../src/sqlite.cpp ../src/createowner.cpp ../src/updateowner.cpp ../src/createbird.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../src/mainwindow.ui ../src/createowner.ui ../src/updateowner.ui ../src/createbird.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../src/mainwindow.h ../src/commons.h ../src/sqlite.h ../src/createowner.h ../src/updateowner.h ../src/createbird.h ../src/updatebird.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../src/main.cpp ../src/mainwindow.cpp ../src/sqlite.cpp ../src/createowner.cpp ../src/updateowner.cpp ../src/createbird.cpp ../src/updatebird.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../src/mainwindow.ui ../src/createowner.ui ../src/updateowner.ui ../src/createbird.ui ../src/updatebird.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -360,13 +366,14 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_createowner.cpp moc_updateowner.cpp moc_createbird.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_createowner.cpp moc_updateowner.cpp moc_createbird.cpp moc_updatebird.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_createowner.cpp moc_updateowner.cpp moc_createbird.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_createowner.cpp moc_updateowner.cpp moc_createbird.cpp moc_updatebird.cpp
 moc_mainwindow.cpp: ../src/commons.h \
 		../src/sqlite.h \
 		../src/createowner.h \
 		../src/updateowner.h \
+		../src/createbird.h \
 		../src/mainwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/johnathan/Repositories/john/littleProject/src -I/usr/local/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/mainwindow.h -o moc_mainwindow.cpp
 
@@ -380,14 +387,19 @@ moc_updateowner.cpp: ../src/commons.h \
 		../src/updateowner.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/johnathan/Repositories/john/littleProject/src -I/usr/local/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/updateowner.h -o moc_updateowner.cpp
 
-moc_createbird.cpp: ../src/createbird.h
+moc_createbird.cpp: ../src/commons.h \
+		../src/sqlite.h \
+		../src/createbird.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/johnathan/Repositories/john/littleProject/src -I/usr/local/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/createbird.h -o moc_createbird.cpp
+
+moc_updatebird.cpp: ../src/updatebird.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/johnathan/Repositories/john/littleProject/src -I/usr/local/include -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/updatebird.h -o moc_updatebird.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_createowner.h ui_updateowner.h ui_createbird.h
+compiler_uic_make_all: ui_mainwindow.h ui_createowner.h ui_updateowner.h ui_createbird.h ui_updatebird.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_createowner.h ui_updateowner.h ui_createbird.h
+	-$(DEL_FILE) ui_mainwindow.h ui_createowner.h ui_updateowner.h ui_createbird.h ui_updatebird.h
 ui_mainwindow.h: ../src/mainwindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../src/mainwindow.ui -o ui_mainwindow.h
 
@@ -399,6 +411,9 @@ ui_updateowner.h: ../src/updateowner.ui
 
 ui_createbird.h: ../src/createbird.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../src/createbird.ui -o ui_createbird.h
+
+ui_updatebird.h: ../src/updatebird.ui
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../src/updatebird.ui -o ui_updatebird.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -414,7 +429,8 @@ main.o: ../src/main.cpp ../src/mainwindow.h \
 		../src/commons.h \
 		../src/sqlite.h \
 		../src/createowner.h \
-		../src/updateowner.h
+		../src/updateowner.h \
+		../src/createbird.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../src/main.cpp
 
 mainwindow.o: ../src/mainwindow.cpp ../src/mainwindow.h \
@@ -422,6 +438,7 @@ mainwindow.o: ../src/mainwindow.cpp ../src/mainwindow.h \
 		../src/sqlite.h \
 		../src/createowner.h \
 		../src/updateowner.h \
+		../src/createbird.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../src/mainwindow.cpp
 
@@ -442,8 +459,14 @@ updateowner.o: ../src/updateowner.cpp ../src/updateowner.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o updateowner.o ../src/updateowner.cpp
 
 createbird.o: ../src/createbird.cpp ../src/createbird.h \
+		../src/commons.h \
+		../src/sqlite.h \
 		ui_createbird.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o createbird.o ../src/createbird.cpp
+
+updatebird.o: ../src/updatebird.cpp ../src/updatebird.h \
+		ui_updatebird.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o updatebird.o ../src/updatebird.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
@@ -456,6 +479,9 @@ moc_updateowner.o: moc_updateowner.cpp
 
 moc_createbird.o: moc_createbird.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_createbird.o moc_createbird.cpp
+
+moc_updatebird.o: moc_updatebird.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_updatebird.o moc_updatebird.cpp
 
 ####### Install
 

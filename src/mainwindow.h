@@ -10,6 +10,7 @@
 #include "updateowner.h"
 
 #include "createbird.h"
+#include "updatebird.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +29,7 @@ public:
     void initOwnerTab();
     void initBirdsTab();
 
+    void updateAllTabs();
     void updateOwnerTab();
     void updateBicudoTab();
     void updateCuriofTab();
@@ -58,32 +60,39 @@ public:
 private slots:
     void handleCreateOwner();
     void handleCellOwner(int row,int col);
-    void handleRefresnOwner();
+    void handleRefreshOwner();
     void handleDeleteOwner();
     void handleUpdateOwner();
 
     void handleCreateBicudo();
     void handleCellBicudo(int row,int col);
+    void handleRefreshBicudo();
     void handleDeleteBicudo();
+    void handleUpdateBicudo();
 
     void handleCreateCuriof();
     void handleCellCuriof(int row,int col);
+    void handleRefreshCuriof();
     void handleDeleteCuriof();
 
     void handleCreateCuriol();
     void handleCellCuriol(int row,int col);
+    void handleRefreshCuriol();
     void handleDeleteCuriol();
 
     void handleCreateChanchao();
     void handleCellChanchao(int row,int col);
+    void handleRefreshChanchao();
     void handleDeleteChanchao();
 
     void handleCreateColeiro();
     void handleCellColeiro(int row,int col);
+    void handleRefreshColeiro();
     void handleDeleteColeiro();
 
     void handleCreateTrinca();
     void handleCellTrinca(int row,int col);
+    void handleRefreshTrinca();
     void handleDeleteTrinca();
 
 private:
