@@ -48,7 +48,7 @@ public:
 
     void addBird(Bird, Owner);
 
-    std::vector<Bird> listBicudos(int id_owner = 0);
+    std::vector<Bird> listBirds(int race, int id_owner = 0);
 
 };
 

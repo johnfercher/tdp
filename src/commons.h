@@ -4,7 +4,7 @@
 #include "iostream"
 #include "vector"
 
-enum{ UNKNONW = -1, BICUDO_F = 0, CURIO_F = 1, CHANCHAO_F = 2, COLEIRO = 3, TRINCA_FERRO = 4, CURIO = 5 };
+enum{ UNKNONW = -1, BICUDO_F = 0, CURIO_F = 1, CHANCHAO_F = 2, COLEIRO = 3, TRINCA_FERRO = 4, CURIO_L = 5 };
 
 struct Bird{
     int id;
@@ -42,11 +42,11 @@ struct Owner{
     int id;
     std::string name;
     std::vector<Bird> bicudos;
-    std::vector<Bird> curios;
+    std::vector<Bird> curiofs;
     std::vector<Bird> trincas;
-    std::vector<Bird> chancaos;
+    std::vector<Bird> chanchaos;
     std::vector<Bird> coleiros;
-    std::vector<Bird> curios2;
+    std::vector<Bird> curiols;
     std::string cpf;
     std::string ctf;
 

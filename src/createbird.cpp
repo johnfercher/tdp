@@ -48,8 +48,8 @@ void CreateBird::setRace(int race){
         case TRINCA_FERRO:{
             ui->race->setText("Trinca Ferro");
         }break;
-        case CURIO:{
-            ui->race->setText("Curió");
+        case CURIO_L:{
+            ui->race->setText("Curió Canto-Livre");
         }break;
     }
 }

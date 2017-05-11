@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[10];
-    char stringdata0[128];
+    QByteArrayData data[15];
+    char stringdata0[228];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,13 +38,20 @@ QT_MOC_LITERAL(5, 67, 3), // "row"
 QT_MOC_LITERAL(6, 71, 3), // "col"
 QT_MOC_LITERAL(7, 75, 17), // "handleDeleteOwner"
 QT_MOC_LITERAL(8, 93, 17), // "handleUpdateOwner"
-QT_MOC_LITERAL(9, 111, 16) // "handleCreateBird"
+QT_MOC_LITERAL(9, 111, 18), // "handleCreateBicudo"
+QT_MOC_LITERAL(10, 130, 18), // "handleCreateCuriof"
+QT_MOC_LITERAL(11, 149, 18), // "handleCreateCuriol"
+QT_MOC_LITERAL(12, 168, 20), // "handleCreateChanchao"
+QT_MOC_LITERAL(13, 189, 19), // "handleCreateColeiro"
+QT_MOC_LITERAL(14, 209, 18) // "handleCreateTrinca"
 
     },
     "MainWindow\0handleCreateOwner\0\0"
     "handleRefresnOwner\0handleCellClicked\0"
     "row\0col\0handleDeleteOwner\0handleUpdateOwner\0"
-    "handleCreateBird"
+    "handleCreateBicudo\0handleCreateCuriof\0"
+    "handleCreateCuriol\0handleCreateChanchao\0"
+    "handleCreateColeiro\0handleCreateTrinca"
 };
 #undef QT_MOC_LITERAL
 
@@ -54,7 +61,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,17 +69,27 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   44,    2, 0x08 /* Private */,
-       3,    0,   45,    2, 0x08 /* Private */,
-       4,    2,   46,    2, 0x08 /* Private */,
-       7,    0,   51,    2, 0x08 /* Private */,
-       8,    0,   52,    2, 0x08 /* Private */,
-       9,    0,   53,    2, 0x08 /* Private */,
+       1,    0,   69,    2, 0x08 /* Private */,
+       3,    0,   70,    2, 0x08 /* Private */,
+       4,    2,   71,    2, 0x08 /* Private */,
+       7,    0,   76,    2, 0x08 /* Private */,
+       8,    0,   77,    2, 0x08 /* Private */,
+       9,    0,   78,    2, 0x08 /* Private */,
+      10,    0,   79,    2, 0x08 /* Private */,
+      11,    0,   80,    2, 0x08 /* Private */,
+      12,    0,   81,    2, 0x08 /* Private */,
+      13,    0,   82,    2, 0x08 /* Private */,
+      14,    0,   83,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    5,    6,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -91,7 +108,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 2: _t->handleCellClicked((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 3: _t->handleDeleteOwner(); break;
         case 4: _t->handleUpdateOwner(); break;
-        case 5: _t->handleCreateBird(); break;
+        case 5: _t->handleCreateBicudo(); break;
+        case 6: _t->handleCreateCuriof(); break;
+        case 7: _t->handleCreateCuriol(); break;
+        case 8: _t->handleCreateChanchao(); break;
+        case 9: _t->handleCreateColeiro(); break;
+        case 10: _t->handleCreateTrinca(); break;
         default: ;
         }
     }
@@ -122,13 +144,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 11;
     }
     return _id;
 }

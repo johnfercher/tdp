@@ -1,7 +1,7 @@
 #include "sqlite.h"
 
 std::vector<Owner> _owners;
-std::vector<Bird> _bicudos;
+std::vector<Bird> _birds;
 
 Sqlite::Sqlite()
 {
@@ -53,7 +53,7 @@ int Sqlite::callback_list_owners(void *NotUsed, int argc, char **argv, char **az
 
 int Sqlite::callback_list_bicudos(void *NotUsed, int argc, char **argv, char **azColName){
     for(int i = 0; i < argc; i = i+5){
-        _bicudos.push_back(Bird(
+        _birds.push_back(Bird(
                               atoi(argv[i]), std::string(argv[i+1]), atoi(argv[i+2]), std::string(argv[i+3])
                               )
                           );
@@ -131,8 +131,12 @@ std::vector<Owner> Sqlite::listOwners(){
     close();
 
     for(unsigned int i = 0 ; i < _owners.size() ; i++){
-        _owners.at(i).bicudos = listBicudos(_owners.at(i).id);
-        //_owners.at(i).debug();
+        _owners.at(i).bicudos = listBirds(BICUDO_F, _owners.at(i).id);
+        _owners.at(i).curiofs = listBirds(CURIO_F, _owners.at(i).id);
+        _owners.at(i).curiols = listBirds(CURIO_L, _owners.at(i).id);
+        _owners.at(i).trincas = listBirds(TRINCA_FERRO, _owners.at(i).id);
+        _owners.at(i).coleiros = listBirds(COLEIRO, _owners.at(i).id);
+        _owners.at(i).chanchaos = listBirds(CHANCHAO_F, _owners.at(i).id);
     }
 
     return _owners;
@@ -160,16 +164,16 @@ void Sqlite::addBird(Bird bird, Owner owner){
     close();
 }
 
-std::vector<Bird> Sqlite::listBicudos(int id_owner){
+std::vector<Bird> Sqlite::listBirds(int race, int id_owner){
     std::stringstream query;
-    _bicudos.clear();
+    _birds.clear();
 
     if(id_owner == 0)
-        query << "SELECT * FROM Bird where race='0';";
+        query << "SELECT * FROM Bird where race='" << race << "';";
     else
-        query << "SELECT * FROM Bird where race='0' AND id_owner='" << id_owner << "';";
+        query << "SELECT * FROM Bird where race='" << race << "' AND id_owner='" << id_owner << "';";
 
-    std::cout << query.str() << std::endl;
+    //std::cout << query.str() << std::endl;
 
     open();
         status_db = sqlite3_exec(db, query.str().c_str(), callback_list_bicudos, 0, &error_query);
@@ -179,7 +183,7 @@ std::vector<Bird> Sqlite::listBicudos(int id_owner){
         }
     close();
 
-    return _bicudos;
+    return _birds;
 }
 
 

@@ -227,7 +227,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -283,7 +283,7 @@
          <string>Atualizar</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="createBirdBtn">
+       <widget class="QPushButton" name="createBicudoBtn">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -293,10 +293,10 @@
          </rect>
         </property>
         <property name="text">
-         <string>Novo Pássaro</string>
+         <string>Novo Bicudo</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="deleteBirdBtn">
+       <widget class="QPushButton" name="deleteBicudoBtn">
         <property name="geometry">
          <rect>
           <x>420</x>
@@ -306,10 +306,10 @@
          </rect>
         </property>
         <property name="text">
-         <string>Remover Pássaro</string>
+         <string>Remover Bicudo</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="updateBirdBtn">
+       <widget class="QPushButton" name="updateBicudoBtn">
         <property name="geometry">
          <rect>
           <x>220</x>
@@ -319,7 +319,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Alterar Dados de Pássaro</string>
+         <string>Alterar Dados de Bicudo</string>
         </property>
        </widget>
       </widget>
@@ -327,26 +327,476 @@
        <attribute name="title">
         <string>Curió Fibra</string>
        </attribute>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>1221</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Curió Fibra</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="updateCuriofBtn">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Alterar Dados de Curió</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="deleteCuriofBtn">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Remover Curió</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="createCuriofBtn">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Novo Curió</string>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="curiofWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>1221</width>
+          <height>471</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="refreshCuriofBtn">
+        <property name="geometry">
+         <rect>
+          <x>1030</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Atualizar</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
         <string>Chanchão Fibra</string>
        </attribute>
+       <widget class="QPushButton" name="updateChanchaoBtn">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Alterar Dados de Chanchão</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="refreshChanchaoBtn">
+        <property name="geometry">
+         <rect>
+          <x>1030</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Atualizar</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="createChanchaoBtn">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Novo Chanchão</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>1221</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Chanchão Fibra</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="chanchaoWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>1221</width>
+          <height>471</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="deleteChanchaoBtn">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Remover Chanchão</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_4">
        <attribute name="title">
         <string>Coleiro</string>
        </attribute>
+       <widget class="QTableWidget" name="coleiroWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>1221</width>
+          <height>471</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>1221</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Coleiro</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="updateColeiroBtn">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Alterar Dados de Coleiro</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="refreshColeiroBtn">
+        <property name="geometry">
+         <rect>
+          <x>1030</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Atualizar</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="deleteColeiroBtn">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Remover Coleiro</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="createColeiroBtn">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Novo Coleiro</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
         <string>Trinca Ferro</string>
        </attribute>
+       <widget class="QPushButton" name="deleteTrincaBtn">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Remover Trinca Ferro</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="createTrincaBtn">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Novo Trinca Ferro</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="updateTrincaBtn">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Alterar Dados de T. Ferro</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="refreshTrincaBtn">
+        <property name="geometry">
+         <rect>
+          <x>1030</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Atualizar</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>1221</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Trinca Ferro</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="trincaWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>1221</width>
+          <height>471</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_6">
        <attribute name="title">
-        <string>Curió ?</string>
+        <string>Curió Canto-Livre</string>
        </attribute>
+       <widget class="QPushButton" name="updateCuriolBtn">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Alterar Dados de Curió</string>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="curiolWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>1221</width>
+          <height>471</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="createCuriolBtn">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Novo Curió</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>1221</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Curió Canto-Livre</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="deleteCuriolBtn">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Remover Curió</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="refreshCuriolBtn">
+        <property name="geometry">
+         <rect>
+          <x>1030</x>
+          <y>550</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Atualizar</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>
