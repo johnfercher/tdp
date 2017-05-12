@@ -11,19 +11,22 @@ struct Bird{
     std::string name;
     int race;
     std::string washer;
+    int id_owner;
 
     Bird(){
         id = -1;
         name = "";
         race = UNKNONW;
         washer = "";
+        id_owner = -1;
     };
 
-    Bird(int id, std::string name, int race, std::string washer){
+    Bird(int id, std::string name, int race, std::string washer, int id_owner){
         this->id = id;
         this->name = name;
         this->race = race;
         this->washer = washer;
+        this->id_owner = id_owner;
     };
 
     Bird(Bird *bd){
@@ -31,10 +34,11 @@ struct Bird{
         name = bd->name;
         race = bd->race;
         washer = bd->washer;
+        id_owner = bd->id_owner;
     };
 
     void debug(){
-        std::cout << "Id:" << id << ", Name: " << name << ", Race:" << race << ", Washer: " << washer << std::endl;
+        std::cout << "Id:" << id << ", Name: " << name << ", Race:" << race << ", Washer: " << washer << ", Id_Owner: " << id_owner << std::endl;
     }
 };
 

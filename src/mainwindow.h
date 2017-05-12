@@ -12,6 +12,8 @@
 #include "createbird.h"
 #include "updatebird.h"
 
+#include "confirmation.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -59,39 +61,39 @@ public:
 
 private slots:
     void handleCreateOwner();
-    void handleCellOwner(int row,int col);
+    void handleCellOwner(int row);
     void handleRefreshOwner();
     void handleDeleteOwner();
     void handleUpdateOwner();
 
     void handleCreateBicudo();
-    void handleCellBicudo(int row,int col);
+    void handleCellBicudo(int row);
     void handleRefreshBicudo();
     void handleDeleteBicudo();
     void handleUpdateBicudo();
 
     void handleCreateCuriof();
-    void handleCellCuriof(int row,int col);
+    void handleCellCuriof(int row);
     void handleRefreshCuriof();
     void handleDeleteCuriof();
 
     void handleCreateCuriol();
-    void handleCellCuriol(int row,int col);
+    void handleCellCuriol(int row);
     void handleRefreshCuriol();
     void handleDeleteCuriol();
 
     void handleCreateChanchao();
-    void handleCellChanchao(int row,int col);
+    void handleCellChanchao(int row);
     void handleRefreshChanchao();
     void handleDeleteChanchao();
 
     void handleCreateColeiro();
-    void handleCellColeiro(int row,int col);
+    void handleCellColeiro(int row);
     void handleRefreshColeiro();
     void handleDeleteColeiro();
 
     void handleCreateTrinca();
-    void handleCellTrinca(int row,int col);
+    void handleCellTrinca(int row);
     void handleRefreshTrinca();
     void handleDeleteTrinca();
 

@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     createowner.cpp \
     updateowner.cpp \
     createbird.cpp \
-    updatebird.cpp
+    updatebird.cpp \
+    confirmation.cpp
 
 HEADERS  += mainwindow.h \
     commons.h \
@@ -31,10 +32,12 @@ HEADERS  += mainwindow.h \
     createowner.h \
     updateowner.h \
     createbird.h \
-    updatebird.h
+    updatebird.h \
+    confirmation.h
 
 FORMS    += mainwindow.ui \
     createowner.ui \
     updateowner.ui \
     createbird.ui \
-    updatebird.ui
+    updatebird.ui \
+    confirmation.ui

@@ -15,17 +15,17 @@ UpdateBird::~UpdateBird()
 }
 
 void UpdateBird::handleSave(){
-    /*std::string name = ui->nameLine->text().toUtf8().constData();
-    std::string ctf = ui->ctfLine->text().toUtf8().constData();
-    std::string cpf = ui->cpfLine->text().toUtf8().constData();
+    std::string name = ui->nameLine->text().toUtf8().constData();
+    std::string washer = ui->washerLine->text().toUtf8().constData();
 
-    if(name != "" && ctf != "" && cpf != ""){
-        owner.name = name;
-        owner.cpf = cpf;
-        owner.ctf = ctf;
-        sql.updateOwner(owner);
+    if(name != "" && washer != ""){
+        bird.name = name;
+        bird.washer = washer;
+        bird.race = ui->racesBox->currentIndex();
+        bird.id_owner = owners.at(ui->ownersBox->currentIndex()).id;
+        sql.updateBird(bird);
         this->close();
-    }*/
+    }
 }
 
 void UpdateBird::setBird(Bird bird){
@@ -39,6 +39,12 @@ void UpdateBird::setBird(Bird bird){
 
     ui->racesBox->addItems(list);
     ui->racesBox->setCurrentIndex(bird.race);
+
+    for(unsigned int i = 0 ; i < owners.size() ; i++){
+        if(owners.at(i).id == bird.id_owner){
+            ui->ownersBox->setCurrentIndex(i);
+        }
+    }
 }
 
 void UpdateBird::setOwners(std::vector<Owner> owners){
@@ -50,8 +56,5 @@ void UpdateBird::setOwners(std::vector<Owner> owners){
     }
 
     ui->ownersBox->addItems(list);
-    /*for(unsigned int i = 0 ; i < ui->ownersBox->si){
-
-    }*/
 }
 

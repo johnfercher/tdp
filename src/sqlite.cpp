@@ -51,10 +51,10 @@ int Sqlite::callback_list_owners(void *NotUsed, int argc, char **argv, char **az
     return 0;
 }
 
-int Sqlite::callback_list_bicudos(void *NotUsed, int argc, char **argv, char **azColName){
-    for(int i = 0; i < argc; i = i+5){
+int Sqlite::callback_list_birds(void *NotUsed, int argc, char **argv, char **azColName){
+    for(int i = 0; i < argc; i = i+6){
         _birds.push_back(Bird(
-                              atoi(argv[i]), std::string(argv[i+1]), atoi(argv[i+2]), std::string(argv[i+3])
+                              atoi(argv[i]), std::string(argv[i+1]), atoi(argv[i+2]), std::string(argv[i+3]), atoi(argv[i+4])
                               )
                           );
     }
@@ -114,6 +114,8 @@ void Sqlite::deleteOwner(Owner owner){
             sqlite3_free(error_query);
         }
     close();
+
+    deleteBirds(owner);
 }
 
 std::vector<Owner> Sqlite::listOwners(){
@@ -164,12 +166,48 @@ void Sqlite::addBird(Bird bird, Owner owner){
     close();
 }
 
+void Sqlite::updateBird(Bird bird){
+    std::stringstream query;
+
+    query << "UPDATE Bird SET ";
+        query << "name = '" << bird.name << "',";
+        query << "race = '" << bird.race << "',";
+        query << "id_owner = '" << bird.id_owner << "',";
+        query << "washer = '" << bird.washer << "'";
+    query << "WHERE id = '" << bird.id << "'";
+
+    open();
+        status_db = sqlite3_exec(db, query.str().c_str(), callback, 0, &error_query);
+        if(status_db != SQLITE_OK){
+            fprintf(stderr, "SQL error: %s\n", error_query);
+            sqlite3_free(error_query);
+        }
+    close();
+}
+
 void Sqlite::deleteBird(Bird bird){
     std::stringstream query;
 
     query << "DELETE FROM Bird";
     query << " WHERE id=";
         query << "'" << bird.id << "'";
+    query << ";";
+
+    open();
+        status_db = sqlite3_exec(db, query.str().c_str(), callback, 0, &error_query);
+        if(status_db != SQLITE_OK){
+            fprintf(stderr, "SQL error: %s\n", error_query);
+            sqlite3_free(error_query);
+        }
+    close();
+}
+
+void Sqlite::deleteBirds(Owner owner){
+    std::stringstream query;
+
+    query << "DELETE FROM Bird";
+    query << " WHERE id_owner=";
+        query << "'" << owner.id << "'";
     query << ";";
 
     open();
@@ -193,7 +231,7 @@ std::vector<Bird> Sqlite::listBirds(int race, int id_owner){
     //std::cout << query.str() << std::endl;
 
     open();
-        status_db = sqlite3_exec(db, query.str().c_str(), callback_list_bicudos, 0, &error_query);
+        status_db = sqlite3_exec(db, query.str().c_str(), callback_list_birds, 0, &error_query);
         if(status_db != SQLITE_OK){
             fprintf(stderr, "SQL error: %s\n", error_query);
             sqlite3_free(error_query);
@@ -202,5 +240,3 @@ std::vector<Bird> Sqlite::listBirds(int race, int id_owner){
 
     return _birds;
 }
-
-

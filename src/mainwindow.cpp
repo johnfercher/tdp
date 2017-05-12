@@ -62,39 +62,39 @@ void MainWindow::init(){
     updateAllTabs();
 
     connect(ui->createOwnerBtn, SIGNAL (released()), this, SLOT (handleCreateOwner()));
-    connect(ui->ownerWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellOwner(int,int)));
+    connect(ui->ownerWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellOwner(int)));
     connect(ui->refreshOwnerBtn, SIGNAL (released()), this, SLOT (handleRefreshOwner()));
     connect(ui->deleteOwnerBtn, SIGNAL (released()), this, SLOT (handleDeleteOwner()));
     connect(ui->updateOwnerBtn, SIGNAL (released()), this, SLOT (handleUpdateOwner()));
 
     connect(ui->createBicudoBtn, SIGNAL (released()), this, SLOT (handleCreateBicudo()));
-    connect(ui->bicudoWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellBicudo(int,int)));
+    connect(ui->bicudoWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellBicudo(int)));
     connect(ui->refreshBicudoBtn, SIGNAL (released()), this, SLOT (handleRefreshBicudo()));
     connect(ui->deleteBicudoBtn, SIGNAL (released()), this, SLOT (handleDeleteBicudo()));
     connect(ui->updateBicudoBtn, SIGNAL (released()), this, SLOT (handleUpdateBicudo()));
 
     connect(ui->createCuriofBtn, SIGNAL (released()), this, SLOT (handleCreateCuriof()));
-    connect(ui->curiofWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellCuriof(int,int)));
+    connect(ui->curiofWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellCuriof(int)));
     connect(ui->refreshCuriofBtn, SIGNAL (released()), this, SLOT (handleRefreshCuriof()));
     connect(ui->deleteCuriofBtn, SIGNAL (released()), this, SLOT (handleDeleteCuriof()));
 
     connect(ui->createCuriolBtn, SIGNAL (released()), this, SLOT (handleCreateCuriol()));
-    connect(ui->curiolWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellCuriol(int,int)));
+    connect(ui->curiolWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellCuriol(int)));
     connect(ui->refreshCuriolBtn, SIGNAL (released()), this, SLOT (handleRefreshCuriol()));
     connect(ui->deleteCuriolBtn, SIGNAL (released()), this, SLOT (handleDeleteCuriol()));
 
     connect(ui->createChanchaoBtn, SIGNAL (released()), this, SLOT (handleCreateChanchao()));
-    connect(ui->chanchaoWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellChanchao(int,int)));
+    connect(ui->chanchaoWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellChanchao(int)));
     connect(ui->refreshChanchaoBtn, SIGNAL (released()), this, SLOT (handleRefreshChanchao()));
     connect(ui->deleteChanchaoBtn, SIGNAL (released()), this, SLOT (handleDeleteChanchao()));
 
     connect(ui->createColeiroBtn, SIGNAL (released()), this, SLOT (handleCreateColeiro()));
-    connect(ui->coleiroWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellColeiro(int,int)));
+    connect(ui->coleiroWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellColeiro(int)));
     connect(ui->refreshColeiroBtn, SIGNAL (released()), this, SLOT (handleRefreshColeiro()));
     connect(ui->deleteColeiroBtn, SIGNAL (released()), this, SLOT (handleDeleteColeiro()));
 
     connect(ui->createTrincaBtn, SIGNAL (released()), this, SLOT (handleCreateTrinca()));
-    connect(ui->trincaWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellTrinca(int,int)));
+    connect(ui->trincaWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellTrinca(int)));
     connect(ui->refreshTrincaBtn, SIGNAL (released()), this, SLOT (handleRefreshTrinca()));
     connect(ui->deleteTrincaBtn, SIGNAL (released()), this, SLOT (handleDeleteTrinca()));
 }
@@ -193,8 +193,15 @@ void MainWindow::handleRefreshOwner(){
 
 void MainWindow::handleDeleteOwner(){
     if(ownerRowSelected != -1){
-        sql.deleteOwner(owners.at(ownerRowSelected));
-        updateOwnerTab();
+        Confirmation dialog(this);
+        dialog.setFixedSize(380, 160);
+        dialog.setMessage("Você está prestes a excluir um proprietário do banco de dados. Isso irá removê-lo do disco, junto a todos os pássaros pertencentes do mesmo. Gostaria de prosseguir? ");
+
+        if(dialog.exec() == 1){
+            sql.deleteOwner(owners.at(ownerRowSelected));
+            updateAllTabs();
+        }
+
         ownerRowSelected = -1;
     }
 }
@@ -211,7 +218,7 @@ void MainWindow::handleUpdateOwner(){
     }
 }
 
-void MainWindow::handleCellOwner(int row,int col)
+void MainWindow::handleCellOwner(int row)
 {
     ownerRowSelected = row;
 }
@@ -234,8 +241,14 @@ void MainWindow::handleRefreshBicudo(){
 
 void MainWindow::handleDeleteBicudo(){
     if(bicudoRowSelected != -1){
-        sql.deleteBird(bicudos.at(bicudoRowSelected));
-        updateBicudoTab();
+        Confirmation dialog(this);
+        dialog.setFixedSize(380, 160);
+        dialog.setMessage("Você está prestes a excluir um pássaro do banco de dados. Isso irá removê-lo do disco. Gostaria de prosseguir? ");
+
+        if(dialog.exec() == 1){
+            sql.deleteBird(bicudos.at(bicudoRowSelected));
+            updateBicudoTab();
+        }
         bicudoRowSelected = -1;
     }
 }
@@ -255,7 +268,7 @@ void MainWindow::handleUpdateBicudo(){
     }
 }
 
-void MainWindow::handleCellBicudo(int row,int col)
+void MainWindow::handleCellBicudo(int row)
 {
     bicudoRowSelected = row;
 }
@@ -279,13 +292,20 @@ void MainWindow::handleRefreshCuriof(){
 
 void MainWindow::handleDeleteCuriof(){
     if(curiofRowSelected != -1){
-        sql.deleteBird(curiofs.at(curiofRowSelected));
-        updateCuriofTab();
+        Confirmation dialog(this);
+        dialog.setFixedSize(380, 160);
+        dialog.setMessage("Você está prestes a excluir um pássaro do banco de dados. Isso irá removê-lo do disco. Gostaria de prosseguir? ");
+
+        if(dialog.exec() == 1){
+            sql.deleteBird(curiofs.at(curiofRowSelected));
+            updateCuriofTab();
+        }
+
         curiofRowSelected = -1;
     }
 }
 
-void MainWindow::handleCellCuriof(int row,int col)
+void MainWindow::handleCellCuriof(int row)
 {
     curiofRowSelected = row;
 }
@@ -308,13 +328,20 @@ void MainWindow::handleRefreshCuriol(){
 
 void MainWindow::handleDeleteCuriol(){
     if(curiolRowSelected != -1){
-        sql.deleteBird(curiols.at(curiolRowSelected));
-        updateCuriolTab();
+        Confirmation dialog(this);
+        dialog.setFixedSize(380, 160);
+        dialog.setMessage("Você está prestes a excluir um pássaro do banco de dados. Isso irá removê-lo do disco. Gostaria de prosseguir? ");
+
+        if(dialog.exec() == 1){
+            sql.deleteBird(curiols.at(curiolRowSelected));
+            updateCuriolTab();
+        }
+
         curiolRowSelected = -1;
     }
 }
 
-void MainWindow::handleCellCuriol(int row,int col)
+void MainWindow::handleCellCuriol(int row)
 {
     curiolRowSelected = row;
 }
@@ -337,13 +364,20 @@ void MainWindow::handleRefreshChanchao(){
 
 void MainWindow::handleDeleteChanchao(){
     if(chanchaoRowSelected != -1){
-        sql.deleteBird(chanchaos.at(chanchaoRowSelected));
-        updateChanchaoTab();
+        Confirmation dialog(this);
+        dialog.setFixedSize(380, 160);
+        dialog.setMessage("Você está prestes a excluir um pássaro do banco de dados. Isso irá removê-lo do disco. Gostaria de prosseguir? ");
+
+        if(dialog.exec() == 1){
+            sql.deleteBird(chanchaos.at(chanchaoRowSelected));
+            updateChanchaoTab();
+        }
+
         chanchaoRowSelected = -1;
     }
 }
 
-void MainWindow::handleCellChanchao(int row,int col)
+void MainWindow::handleCellChanchao(int row)
 {
     chanchaoRowSelected = row;
 }
@@ -366,13 +400,20 @@ void MainWindow::handleRefreshColeiro(){
 
 void MainWindow::handleDeleteColeiro(){
     if(coleiroRowSelected != -1){
-        sql.deleteBird(coleiros.at(coleiroRowSelected));
-        updateColeiroTab();
+        Confirmation dialog(this);
+        dialog.setFixedSize(380, 160);
+        dialog.setMessage("Você está prestes a excluir um pássaro do banco de dados. Isso irá removê-lo do disco. Gostaria de prosseguir? ");
+
+        if(dialog.exec() == 1){
+            sql.deleteBird(coleiros.at(coleiroRowSelected));
+            updateColeiroTab();
+        }
+
         coleiroRowSelected = -1;
     }
 }
 
-void MainWindow::handleCellColeiro(int row,int col)
+void MainWindow::handleCellColeiro(int row)
 {
     coleiroRowSelected = row;
 }
@@ -395,13 +436,20 @@ void MainWindow::handleRefreshTrinca(){
 
 void MainWindow::handleDeleteTrinca(){
     if(trincaRowSelected != -1){
-        sql.deleteBird(trincas.at(trincaRowSelected));
-        updateTrincaTab();
+        Confirmation dialog(this);
+        dialog.setFixedSize(380, 160);
+        dialog.setMessage("Você está prestes a excluir um pássaro do banco de dados. Isso irá removê-lo do disco. Gostaria de prosseguir? ");
+
+        if(dialog.exec() == 1){
+            sql.deleteBird(trincas.at(trincaRowSelected));
+            updateTrincaTab();
+        }
+
         trincaRowSelected = -1;
     }
 }
 
-void MainWindow::handleCellTrinca(int row,int col)
+void MainWindow::handleCellTrinca(int row)
 {
     trincaRowSelected = row;
 }
@@ -476,10 +524,8 @@ void MainWindow::updateBicudoTab(){
 
         std::string str = "";
         for(unsigned int j = 0 ; j < owners.size() ; j++){
-            for(unsigned int k = 0 ; k < owners.at(j).bicudos.size() ; k++){
-                if(owners.at(j).bicudos.at(k).id == bicudos.at(i).id){
-                    str = owners.at(j).name;
-                }
+            if(owners.at(j).id == bicudos.at(i).id_owner){
+                str = owners.at(j).name;
             }
         }
 
@@ -517,10 +563,8 @@ void MainWindow::updateCuriofTab(){
 
         std::string str = "";
         for(unsigned int j = 0 ; j < owners.size() ; j++){
-            for(unsigned int k = 0 ; k < owners.at(j).curiofs.size() ; k++){
-                if(owners.at(j).curiofs.at(k).id == curiofs.at(i).id){
-                    str = owners.at(j).name;
-                }
+            if(owners.at(j).id == curiofs.at(i).id_owner){
+                str = owners.at(j).name;
             }
         }
 
@@ -558,10 +602,8 @@ void MainWindow::updateCuriolTab(){
 
         std::string str = "";
         for(unsigned int j = 0 ; j < owners.size() ; j++){
-            for(unsigned int k = 0 ; k < owners.at(j).curiols.size() ; k++){
-                if(owners.at(j).curiols.at(k).id == curiols.at(i).id){
-                    str = owners.at(j).name;
-                }
+            if(owners.at(j).id == curiols.at(i).id_owner){
+                str = owners.at(j).name;
             }
         }
 
@@ -599,10 +641,8 @@ void MainWindow::updateChanchaoTab(){
 
         std::string str = "";
         for(unsigned int j = 0 ; j < owners.size() ; j++){
-            for(unsigned int k = 0 ; k < owners.at(j).chanchaos.size() ; k++){
-                if(owners.at(j).chanchaos.at(k).id == chanchaos.at(i).id){
-                    str = owners.at(j).name;
-                }
+            if(owners.at(j).id == chanchaos.at(i).id_owner){
+                str = owners.at(j).name;
             }
         }
 
@@ -640,10 +680,8 @@ void MainWindow::updateColeiroTab(){
 
         std::string str = "";
         for(unsigned int j = 0 ; j < owners.size() ; j++){
-            for(unsigned int k = 0 ; k < owners.at(j).coleiros.size() ; k++){
-                if(owners.at(j).coleiros.at(k).id == coleiros.at(i).id){
-                    str = owners.at(j).name;
-                }
+            if(owners.at(j).id == coleiros.at(i).id_owner){
+                str = owners.at(j).name;
             }
         }
 
@@ -681,10 +719,8 @@ void MainWindow::updateTrincaTab(){
 
         std::string str = "";
         for(unsigned int j = 0 ; j < owners.size() ; j++){
-            for(unsigned int k = 0 ; k < owners.at(j).trincas.size() ; k++){
-                if(owners.at(j).trincas.at(k).id == trincas.at(i).id){
-                    str = owners.at(j).name;
-                }
+            if(owners.at(j).id == trincas.at(i).id_owner){
+                str = owners.at(j).name;
             }
         }
 
