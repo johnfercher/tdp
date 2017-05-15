@@ -39,6 +39,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->createTrincaBtn->setStyleSheet("QPushButton{ background-color: #0a0; color: #eee; border-style: outset; border-width: 2px; border-radius: 5px; border-color: #050; } QPushButton:hover:!pressed{ background-color: #0b0; color: #fff; }");
     ui->updateTrincaBtn->setStyleSheet("QPushButton{ background-color: #00a; color: #eee; border-style: outset; border-width: 2px; border-radius: 5px; border-color: #003; } QPushButton:hover:!pressed{ background-color: #00c; color: #fff; }");
 
+    ui->deleteCompBtn->setStyleSheet("QPushButton{ background-color: #d00; color: #eee; border-style: outset; border-width: 2px; border-radius: 5px; border-color: #700; } QPushButton:hover:!pressed{ background-color: #e00; color: #fff; }");
+    ui->createCompBtn->setStyleSheet("QPushButton{ background-color: #0a0; color: #eee; border-style: outset; border-width: 2px; border-radius: 5px; border-color: #050; } QPushButton:hover:!pressed{ background-color: #0b0; color: #fff; }");
+    ui->subscribeCompBtn->setStyleSheet("QPushButton{ background-color: #0a0; color: #eee; border-style: outset; border-width: 2px; border-radius: 5px; border-color: #050; } QPushButton:hover:!pressed{ background-color: #0b0; color: #fff; }");
+    ui->reloadCompBtn->setStyleSheet("QPushButton{ background-color: #00a; color: #eee; border-style: outset; border-width: 2px; border-radius: 5px; border-color: #003; } QPushButton:hover:!pressed{ background-color: #00c; color: #fff; }");
+
     init();
 
     ownerRowSelected = -1;
@@ -48,6 +53,9 @@ MainWindow::MainWindow(QWidget *parent) :
     chanchaoRowSelected = -1;
     coleiroRowSelected = -1;
     trincaRowSelected = -1;
+    reloadCompRowSelected = -1;
+    deleteCompRowSelected = -1;
+    birdRaceRowSelected = -1;
 }
 
 MainWindow::~MainWindow()
@@ -97,6 +105,10 @@ void MainWindow::init(){
     connect(ui->trincaWidget, SIGNAL(cellClicked(int,int)), this, SLOT(handleCellTrinca(int)));
     connect(ui->refreshTrincaBtn, SIGNAL (released()), this, SLOT (handleRefreshTrinca()));
     connect(ui->deleteTrincaBtn, SIGNAL (released()), this, SLOT (handleDeleteTrinca()));
+
+    connect(ui->createCompBtn, SIGNAL (released()), this, SLOT (handleCreateComp()));
+    connect(ui->reloadCompBtn, SIGNAL (released()), this, SLOT (handleReloadComp()));
+    connect(ui->deleteCompBtn, SIGNAL (released()), this, SLOT (handleDeleteComp()));
 }
 
 void MainWindow::updateAllTabs(){
@@ -107,6 +119,8 @@ void MainWindow::updateAllTabs(){
     updateChanchaoTab();
     updateColeiroTab();
     updateTrincaTab();
+    updateCompetitionBox();
+    updateOwnerBox();
 }
 
 void MainWindow::initOwnerTab(){
@@ -454,6 +468,20 @@ void MainWindow::handleCellTrinca(int row)
     trincaRowSelected = row;
 }
 
+void MainWindow::handleCreateComp(){
+    CreateCompetition dialog(this);
+    dialog.setFixedSize(440, 330);
+    dialog.exec();
+}
+
+void MainWindow::handleReloadComp(){
+
+}
+
+void MainWindow::handleDeleteComp(){
+
+}
+
 void MainWindow::updateOwnerTab(){
     ui->ownerWidget->setRowCount(0);
     owners = sql.listOwners();
@@ -741,4 +769,33 @@ void MainWindow::updateTrincaTab(){
         ui->trincaWidget->setItem( ui->trincaWidget->rowCount() -1, 2, item3 );
         ui->trincaWidget->setItem( ui->trincaWidget->rowCount() -1, 3, item4 );
     }
+}
+
+void MainWindow::updateCompetitionBox(){
+    competitions = sql.listCompetition();
+    QStringList list;
+
+    for(int i = 0 ; i < competitions.size() ; i++){
+        list << QString::fromStdString(competitions.at(i).date);
+    }
+
+    ui->comboReloadComp->addItems(list);
+    ui->comboDelComp->addItems(list);
+}
+
+void MainWindow::updateOwnerBox(){
+    birdRaceRowSelected = ui->comboRace->currentIndex();
+    owners_comp = sql.listOwnersWhichHas(birdRaceRowSelected);
+
+    QStringList list;
+
+    for(int i = 0 ; i < owners_comp.size() ; i++){
+        list << QString::fromStdString(owners_comp.at(i).name);
+    }
+
+    ui->comboOwner->addItems(list);
+
+    /*for(int i = 0 ; i < owners_comp.size() ; i++){
+        owners_comp.at(i).debug();
+    }*/
 }

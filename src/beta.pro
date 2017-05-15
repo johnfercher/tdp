@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-CONFIG += qt
+CONFIG += qt c++11
 
 QT       += core gui
 
@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     updateowner.cpp \
     createbird.cpp \
     updatebird.cpp \
-    confirmation.cpp
+    confirmation.cpp \
+    createcompetition.cpp
 
 HEADERS  += mainwindow.h \
     commons.h \
@@ -33,11 +34,13 @@ HEADERS  += mainwindow.h \
     updateowner.h \
     createbird.h \
     updatebird.h \
-    confirmation.h
+    confirmation.h \
+    createcompetition.h
 
 FORMS    += mainwindow.ui \
     createowner.ui \
     updateowner.ui \
     createbird.ui \
     updatebird.ui \
-    confirmation.ui
+    confirmation.ui \
+    createcompetition.ui

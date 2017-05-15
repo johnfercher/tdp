@@ -26,6 +26,7 @@ protected:
     static int callback(void *NotUsed, int argc, char **argv, char **azColName);
     static int callback_list_owners(void *NotUsed, int argc, char **argv, char **azColName);
     static int callback_list_birds(void *NotUsed, int argc, char **argv, char **azColName);
+    static int callback_list_competition(void *NotUsed, int argc, char **argv, char **azColName);
 
 public:
     Sqlite();
@@ -45,6 +46,8 @@ public:
 
     std::vector<Owner> listOwners();
 
+    std::vector<Owner> listOwnersWhichHas(int race);
+
 
     void addBird(Bird, Owner);
 
@@ -55,6 +58,11 @@ public:
     void deleteBirds(Owner);
 
     std::vector<Bird> listBirds(int race, int id_owner = 0);
+
+
+    void addCompetition(Competition competition);
+
+    std::vector<Competition> listCompetition();
 };
 
 #endif // SQLITE_H

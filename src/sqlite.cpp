@@ -2,6 +2,7 @@
 
 std::vector<Owner> _owners;
 std::vector<Bird> _birds;
+std::vector<Competition> _competition;
 
 Sqlite::Sqlite()
 {
@@ -29,10 +30,8 @@ void Sqlite::close(){
 //! --------
 //!
 int Sqlite::callback(void *NotUsed, int argc, char **argv, char **azColName){
-    int i;
-
     //! > Print the info like on the table in database
-    //for(i=0; i<argc; i++){
+    //for(int i = 0; i<argc; i++){
      //printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
     //}
     //printf("\n");
@@ -56,6 +55,16 @@ int Sqlite::callback_list_birds(void *NotUsed, int argc, char **argv, char **azC
         _birds.push_back(Bird(
                               atoi(argv[i]), std::string(argv[i+1]), atoi(argv[i+2]), std::string(argv[i+3]), atoi(argv[i+4])
                               )
+                          );
+    }
+
+    return 0;
+}
+
+int Sqlite::callback_list_competition(void *NotUsed, int argc, char **argv, char **azColName){
+    for(int i = 0; i < argc; i = i+8){
+        _competition.push_back(
+                                Competition(atoi(argv[i]), std::string(argv[i+1]), atoi(argv[i+2]), atoi(argv[i+3]), atoi(argv[i+4]), atoi(argv[i+4]), atoi(argv[i+5]), atoi(argv[i+6]))
                           );
     }
 
@@ -142,6 +151,30 @@ std::vector<Owner> Sqlite::listOwners(){
     }
 
     return _owners;
+}
+
+std::vector<Owner> Sqlite::listOwnersWhichHas(int race){
+    std::vector<Bird> birds = listBirds(race);
+    std::vector<Owner> owner_which_has;
+
+    for(int i = 0 ; i < birds.size() ; i++){
+        std::stringstream query;
+        _owners.clear();
+
+        query << "SELECT * from Owner where id = '" << birds.at(i).id_owner << "'";
+
+        open();
+            status_db = sqlite3_exec(db, query.str().c_str(), callback_list_owners, 0, &error_query);
+            if(status_db != SQLITE_OK){
+                fprintf(stderr, "SQL error: %s\n", error_query);
+                sqlite3_free(error_query);
+            }
+        close();
+
+        owner_which_has.push_back(_owners.at(0));
+    }
+
+    return owner_which_has;
 }
 
 void Sqlite::addBird(Bird bird, Owner owner){
@@ -239,4 +272,44 @@ std::vector<Bird> Sqlite::listBirds(int race, int id_owner){
     close();
 
     return _birds;
+}
+
+void Sqlite::addCompetition(Competition competition){
+    std::stringstream query;
+
+    query << "INSERT INTO Competition (date, qtd_bicudo, qtd_curiof, qtd_curiol, qtd_coleiro, qtd_chanchao, qtd_trinca)";
+    query << " VALUES (";
+        query << "'" << competition.date << "',";
+        query << "'" << competition.qtd_bicudo << "',";
+        query << "'" << competition.qtd_curiof << "',";
+        query << "'" << competition.qtd_curiol << "',";
+        query << "'" << competition.qtd_coleiro << "',";
+        query << "'" << competition.qtd_chanchao << "',";
+        query << "'" << competition.qtd_trinca << "'";
+    query << ");";
+
+    open();
+        status_db = sqlite3_exec(db, query.str().c_str(), callback, 0, &error_query);
+        if(status_db != SQLITE_OK){
+            fprintf(stderr, "SQL error: %s\n", error_query);
+            sqlite3_free(error_query);
+        }
+    close();
+}
+
+std::vector<Competition> Sqlite::listCompetition(){
+    std::stringstream query;
+    _competition.clear();
+
+    query << "SELECT * FROM Competition";
+
+    open();
+        status_db = sqlite3_exec(db, query.str().c_str(), callback_list_competition, 0, &error_query);
+        if(status_db != SQLITE_OK){
+            fprintf(stderr, "SQL error: %s\n", error_query);
+            sqlite3_free(error_query);
+        }
+    close();
+
+    return _competition;
 }

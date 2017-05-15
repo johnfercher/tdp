@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "QDebug"
+#include <QDateTime>
+
 #include "commons.h"
 #include "sqlite.h"
 
@@ -11,6 +13,8 @@
 
 #include "createbird.h"
 #include "updatebird.h"
+
+#include "createcompetition.h"
 
 #include "confirmation.h"
 
@@ -40,15 +44,23 @@ public:
     void updateColeiroTab();
     void updateTrincaTab();
 
+    void updateCompetitionBox();
+    void updateOwnerBox();
+
     Sqlite sql;
 
     std::vector<Owner> owners;
+    std::vector<Owner> owners_comp;
+
     std::vector<Bird> bicudos;
     std::vector<Bird> curiofs;
     std::vector<Bird> curiols;
     std::vector<Bird> chanchaos;
     std::vector<Bird> coleiros;
     std::vector<Bird> trincas;
+
+    int id_competition;
+    std::vector<Competition> competitions;
 
     int ownerRowSelected;
 
@@ -58,6 +70,10 @@ public:
     int chanchaoRowSelected;
     int coleiroRowSelected;
     int trincaRowSelected;
+
+    int deleteCompRowSelected;
+    int reloadCompRowSelected;
+    int birdRaceRowSelected;
 
 private slots:
     void handleCreateOwner();
@@ -96,6 +112,10 @@ private slots:
     void handleCellTrinca(int row);
     void handleRefreshTrinca();
     void handleDeleteTrinca();
+
+    void handleCreateComp();
+    void handleReloadComp();
+    void handleDeleteComp();
 
 private:
     Ui::MainWindow *ui;

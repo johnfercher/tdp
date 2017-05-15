@@ -93,36 +93,55 @@ struct Owner{
 struct Competition{
     int id;
     std::string date;
-    std::vector<Bird*> birds;
-    std::vector<int> numbers;
+    int qtd_bicudo;
+    int qtd_curiof;
+    int qtd_curiol;
+    int qtd_coleiro;
+    int qtd_chanchao;
+    int qtd_trinca;
+    std::vector<Bird> bicudos;
+    std::vector<Bird> curiofs;
+    std::vector<Bird> trincas;
+    std::vector<Bird> chanchaos;
+    std::vector<Bird> coleiros;
+    std::vector<Bird> curiols;
 
     Competition(){
         id = -1;
-        date = "00-00-0000";
+        date = "00-jan-0000";
+        qtd_bicudo = qtd_curiof = qtd_curiol = qtd_coleiro = qtd_chanchao = qtd_trinca = -1;
     };
 
-    Competition(int id, std::string date, std::vector<Bird*> birds, std::vector<int> numbers){
+    Competition(int id, std::string date, int qtd_bicudo, int qtd_curiof, int qtd_curiol, int qtd_coleiro, int qtd_chanchao, int qtd_trinca){
         this->id = id;
         this->date = date;
-        this->birds = birds;
-        this->numbers = numbers;
+        this->qtd_bicudo = qtd_bicudo;
+        this->qtd_curiof = qtd_curiof;
+        this->qtd_curiol = qtd_curiol;
+        this->qtd_coleiro = qtd_coleiro;
+        this->qtd_chanchao = qtd_chanchao;
+        this->qtd_trinca = qtd_trinca;
     };
 
     Competition(Competition *c){
         id = c->id;
         date = c->date;
-        birds = c->birds;
-        numbers = c->numbers;
+        qtd_bicudo = c->qtd_bicudo;
+        qtd_curiof = c->qtd_curiof;
+        qtd_curiol = c->qtd_curiol;
+        qtd_coleiro = c->qtd_coleiro;
+        qtd_chanchao = c->qtd_chanchao;
+        qtd_trinca = c->qtd_trinca;
+        bicudos = c->bicudos;
+        curiofs = c->curiofs;
+        curiols = c->curiols;
+        coleiros = c->coleiros;
+        chanchaos = c->chanchaos;
+        trincas = c->trincas;
     };
 
     void debug(){
-        std::cout << "Id: " << id << ", Date: " << date << std::endl;
-        std::cout << "Results:" << std::endl;
-        for(unsigned int i = 0 ; i < birds.size() ; i++){
-            birds.at(i)->debug();
-            std::cout << numbers.at(i) << std::endl;
-            std::cout << std::endl;
-        }
+        std::cout << "Id: " << id << ", Date: " << date << ", Qtd_bicudo: " << qtd_bicudo << ", Qtd_curiof: " << qtd_curiof << ", Qtd_curiol: " << qtd_curiol << ", Qtd_coleiro: " << qtd_coleiro << ", Qtd_chanchao: " << qtd_chanchao << ", Qtd_trinca: " << qtd_trinca << std::endl;
     };
 };
 

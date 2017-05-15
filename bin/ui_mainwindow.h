@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -90,6 +91,24 @@ public:
     QPushButton *deleteCuriolBtn;
     QPushButton *refreshCuriolBtn;
     QWidget *chanchaoTab;
+    QTabWidget *tabWidget_2;
+    QWidget *tab_7;
+    QPushButton *createCompBtn;
+    QPushButton *reloadCompBtn;
+    QComboBox *comboReloadComp;
+    QComboBox *comboDelComp;
+    QPushButton *deleteCompBtn;
+    QTabWidget *tabWidget_3;
+    QWidget *tab_9;
+    QTabWidget *tabWidget_4;
+    QWidget *tab_10;
+    QLabel *label_8;
+    QComboBox *comboRace;
+    QComboBox *comboOwner;
+    QLabel *label_10;
+    QComboBox *comboBird;
+    QLabel *label_11;
+    QPushButton *subscribeCompBtn;
     QMenuBar *menuBar;
     QStatusBar *statusBar;
 
@@ -320,6 +339,60 @@ public:
         mainTabs->addTab(birdTab, QString());
         chanchaoTab = new QWidget();
         chanchaoTab->setObjectName(QStringLiteral("chanchaoTab"));
+        tabWidget_2 = new QTabWidget(chanchaoTab);
+        tabWidget_2->setObjectName(QStringLiteral("tabWidget_2"));
+        tabWidget_2->setGeometry(QRect(10, 10, 431, 161));
+        tab_7 = new QWidget();
+        tab_7->setObjectName(QStringLiteral("tab_7"));
+        createCompBtn = new QPushButton(tab_7);
+        createCompBtn->setObjectName(QStringLiteral("createCompBtn"));
+        createCompBtn->setGeometry(QRect(10, 10, 411, 31));
+        reloadCompBtn = new QPushButton(tab_7);
+        reloadCompBtn->setObjectName(QStringLiteral("reloadCompBtn"));
+        reloadCompBtn->setGeometry(QRect(10, 50, 181, 31));
+        comboReloadComp = new QComboBox(tab_7);
+        comboReloadComp->setObjectName(QStringLiteral("comboReloadComp"));
+        comboReloadComp->setGeometry(QRect(200, 50, 221, 31));
+        comboDelComp = new QComboBox(tab_7);
+        comboDelComp->setObjectName(QStringLiteral("comboDelComp"));
+        comboDelComp->setGeometry(QRect(200, 90, 221, 31));
+        deleteCompBtn = new QPushButton(tab_7);
+        deleteCompBtn->setObjectName(QStringLiteral("deleteCompBtn"));
+        deleteCompBtn->setGeometry(QRect(10, 90, 181, 31));
+        tabWidget_2->addTab(tab_7, QString());
+        tabWidget_3 = new QTabWidget(chanchaoTab);
+        tabWidget_3->setObjectName(QStringLiteral("tabWidget_3"));
+        tabWidget_3->setGeometry(QRect(10, 180, 1241, 471));
+        tab_9 = new QWidget();
+        tab_9->setObjectName(QStringLiteral("tab_9"));
+        tabWidget_3->addTab(tab_9, QString());
+        tabWidget_4 = new QTabWidget(chanchaoTab);
+        tabWidget_4->setObjectName(QStringLiteral("tabWidget_4"));
+        tabWidget_4->setGeometry(QRect(450, 10, 421, 191));
+        tab_10 = new QWidget();
+        tab_10->setObjectName(QStringLiteral("tab_10"));
+        label_8 = new QLabel(tab_10);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setGeometry(QRect(10, 12, 91, 17));
+        comboRace = new QComboBox(tab_10);
+        comboRace->setObjectName(QStringLiteral("comboRace"));
+        comboRace->setGeometry(QRect(110, 6, 301, 31));
+        comboOwner = new QComboBox(tab_10);
+        comboOwner->setObjectName(QStringLiteral("comboOwner"));
+        comboOwner->setGeometry(QRect(110, 44, 301, 31));
+        label_10 = new QLabel(tab_10);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setGeometry(QRect(10, 50, 91, 17));
+        comboBird = new QComboBox(tab_10);
+        comboBird->setObjectName(QStringLiteral("comboBird"));
+        comboBird->setGeometry(QRect(110, 82, 301, 31));
+        label_11 = new QLabel(tab_10);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setGeometry(QRect(10, 88, 91, 17));
+        subscribeCompBtn = new QPushButton(tab_10);
+        subscribeCompBtn->setObjectName(QStringLiteral("subscribeCompBtn"));
+        subscribeCompBtn->setGeometry(QRect(10, 120, 401, 31));
+        tabWidget_4->addTab(tab_10, QString());
         mainTabs->addTab(chanchaoTab, QString());
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -332,8 +405,11 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabs->setCurrentIndex(1);
-        tabWidget->setCurrentIndex(2);
+        mainTabs->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(5);
+        tabWidget_2->setCurrentIndex(0);
+        tabWidget_3->setCurrentIndex(0);
+        tabWidget_4->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -386,6 +462,25 @@ public:
         refreshCuriolBtn->setText(QApplication::translate("MainWindow", "Atualizar", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QApplication::translate("MainWindow", "Curi\303\263 Canto-Livre", 0));
         mainTabs->setTabText(mainTabs->indexOf(birdTab), QApplication::translate("MainWindow", "P\303\241ssaros", 0));
+        createCompBtn->setText(QApplication::translate("MainWindow", "Nova Competi\303\247\303\243o", 0));
+        reloadCompBtn->setText(QApplication::translate("MainWindow", "Recarregar Competi\303\247\303\243o", 0));
+        deleteCompBtn->setText(QApplication::translate("MainWindow", "Excluir Competi\303\247\303\243o", 0));
+        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_7), QApplication::translate("MainWindow", "Configura\303\247\303\265es", 0));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(tab_9), QApplication::translate("MainWindow", "Rela\303\247\303\265es", 0));
+        label_8->setText(QApplication::translate("MainWindow", "Ra\303\247a:", 0));
+        comboRace->clear();
+        comboRace->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Bicudo Fibra", 0)
+         << QApplication::translate("MainWindow", "Curi\303\263 Fibra", 0)
+         << QApplication::translate("MainWindow", "Chanch\303\243o Fibra", 0)
+         << QApplication::translate("MainWindow", "Coleiro", 0)
+         << QApplication::translate("MainWindow", "Trinca Ferro", 0)
+         << QApplication::translate("MainWindow", "Curi\303\263 Canto-Livre", 0)
+        );
+        label_10->setText(QApplication::translate("MainWindow", "Propriet\303\241rio:", 0));
+        label_11->setText(QApplication::translate("MainWindow", "P\303\241ssaro:", 0));
+        subscribeCompBtn->setText(QApplication::translate("MainWindow", "Increver", 0));
+        tabWidget_4->setTabText(tabWidget_4->indexOf(tab_10), QApplication::translate("MainWindow", "Inscri\303\247\303\265es", 0));
         mainTabs->setTabText(mainTabs->indexOf(chanchaoTab), QApplication::translate("MainWindow", "Competi\303\247\303\243o", 0));
     } // retranslateUi
 
